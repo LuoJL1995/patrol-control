@@ -26,6 +26,7 @@
         <jodatime.version>2.10.2</jodatime.version>
         <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        <rxtxcomm.version>2.2</rxtxcomm.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,18 +39,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <!-- 添加JDBC依赖,支持JDBC数据库 -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-jdbc</artifactId>
-            <version>${spring-boot.version}</version>
-        </dependency>
-        <!-- 支持切面的编程即AOP，包括spring-aop和AspectJ -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-aop</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
         <!-- 单元测试 -->
@@ -144,6 +133,18 @@
             <version>${commons-lang3.version}</version>
         </dependency>
         <!-- 常用工具包 end -->
+        <!-- windows 串口工具 -->
+        <dependency>
+            <groupId>com.hik.rxtxcomm</groupId>
+            <artifactId>rxtxcomm-windows</artifactId>
+            <version>${rxtxcomm.version}</version>
+        </dependency>
+        <!-- linux 串口工具 -->
+        <!--<dependency>
+            <groupId>com.hik.rxtxcomm</groupId>
+            <artifactId>rxtxcomm-linux</artifactId>
+            <version>${rxtxcomm.version}</version>
+        </dependency>-->
     </dependencies>
 
     <build>
