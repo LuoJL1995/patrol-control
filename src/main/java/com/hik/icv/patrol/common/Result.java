@@ -8,7 +8,7 @@ import java.io.Serializable;
 /**
  * @Author LuoJiaLei
  * @Date 2020/4/26
- * @Time 15:04  
+ * @Time 15:04
  */
 public class Result<T> implements Serializable {
     /**
@@ -140,6 +140,7 @@ public class Result<T> implements Serializable {
         this.message = enumeration.getName();
         this.code = enumeration.getValue();
     }
+
     /**
      * 错误返回
      *
@@ -151,6 +152,7 @@ public class Result<T> implements Serializable {
         this.set(enumeration);
         return this;
     }
+
     /**
      * 错误返回
      *
@@ -164,6 +166,7 @@ public class Result<T> implements Serializable {
         result.setMessage(resultEnum.getName());
         return result;
     }
+
     /**
      * 错误返回
      *
@@ -177,6 +180,7 @@ public class Result<T> implements Serializable {
         dstResult.setMessage(srcResult.getMessage());
         return dstResult;
     }
+
     /**
      * 错误返回
      *

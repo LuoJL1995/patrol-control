@@ -40,6 +40,12 @@
             <artifactId>spring-boot-starter-web</artifactId>
             <version>${spring-boot.version}</version>
         </dependency>
+        <!-- 添加JDBC依赖,支持JDBC数据库 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
         <!-- 支持切面的编程即AOP，包括spring-aop和AspectJ -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
