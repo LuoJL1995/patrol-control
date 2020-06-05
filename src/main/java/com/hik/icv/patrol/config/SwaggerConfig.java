@@ -40,7 +40,7 @@ public class SwaggerConfig {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 //页面标题
-                .title("巡查云控系统")
+                .title("巡查控制系统")
                 //条款地址
                 .termsOfServiceUrl("http://despairyoke.github.io/")
                 .version("1.0")
