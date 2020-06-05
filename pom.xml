@@ -18,6 +18,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring-boot.version>2.2.2.RELEASE</spring-boot.version>
+        <junit-platform.version>1.5.2</junit-platform.version>
         <tomcat-embed-jasper.version>9.0.30</tomcat-embed-jasper.version>
         <spring-context.version>5.2.2.RELEASE</spring-context.version>
         <swagger.version>2.4.0</swagger.version>
@@ -47,6 +48,13 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
             <!--指定作用域为test，此依赖只在test时起作用-->
+            <scope>test</scope>
+        </dependency>
+        <!-- junit5启动器 -->
+        <dependency>
+            <groupId>org.junit.platform</groupId>
+            <artifactId>junit-platform-launcher</artifactId>
+            <version>${junit-platform.version}</version>
             <scope>test</scope>
         </dependency>
         <!-- 部署成war包时开启 -->
