@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:task="http://www.springframework.org/schema/task"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context
+		http://www.springframework.org/schema/context/spring-context.xsd
+		http://www.springframework.org/schema/task
+		http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop.xsd
+		http://code.alibabatech.com/schema/dubbo
+        http://code.alibabatech.com/schema/dubbo/dubbo.xsd
+">
+
+
+    <!-- dubbo注册文件-->
+    <!--<import resource="conf/dubbo-consumer.xml"/>
+    <import resource="conf/dubbo-provider.xml"/>-->
+
+    <!-- zk与dubbo配置 -->
+    <!--<dubbo:consumer timeout="5000" retries="0" check="false"/>
+    <dubbo:application name="${zk.dictNodeName}" />
+    <dubbo:registry address="zookeeper://${zk.dubbo.address}" check="false"></dubbo:registry>
+    <dubbo:provider timeout="${zk.timeout}" retries="0"/>
+    <dubbo:protocol name="dubbo" port="${zk.dubbo.port}"/>-->
+
+    <!-- 配置文件环境-->
+    <context:property-placeholder location="classpath:/config/${spring.profiles.active}.properties" ignore-unresolvable="true"/>
+
+
+    <!-- spring 任务调度配置 -->
+    <task:executor id="executor" pool-size="10"/>
+    <task:scheduler id="scheduler" pool-size="10"/>
+    <task:annotation-driven executor="executor" scheduler="scheduler"/>
+
+
+</beans>
+

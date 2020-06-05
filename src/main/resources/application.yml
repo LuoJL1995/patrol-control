@@ -1,0 +1,20 @@
+server:
+  port: 8080 #配置程序端口，8080
+  servlet:
+    session:
+      timeout:
+    context-path: /patrolControl/  # 配置默认访问路径，默认为/
+  tomcat:
+    uri-encoding: UTF-8 # 配置Tomcat编码,默认为UTF-8
+    max-threads: 1000  # 配置最大线程数
+
+# spring boot允许你通过命名约定按照一定的格式(application-{profile}.properties)来定义多个配置文件，
+# 然后通过在application.properyies通过spring.profiles.active来具体激活一个或者多个配置文件，
+# 如果没有没有指定任何profile的配置文件的话，spring boot默认会启动application-default.properties
+spring:
+  profiles:
+    active: test
+
+
+debug: false
+
