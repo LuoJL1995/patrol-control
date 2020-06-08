@@ -12,11 +12,10 @@ import java.util.List;
 import java.util.TooManyListenersException;
 
 /**
- * @name: SerialPortUtil
- * @author: tuacy.
- * @date: 2019/6/26.
- * @version: 1.0
- * @Description: 串口工具类
+ * @Description 串口工具类
+ * @Author LuoJiaLei
+ * @Date 2020/6/8
+ * @Time 13:51
  */
 public class SerialPortUtil {
 
