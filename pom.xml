@@ -27,7 +27,6 @@
         <jodatime.version>2.10.2</jodatime.version>
         <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.9</commons-lang3.version>
-        <jacob.version>1.19</jacob.version>
         <rxtxcomm.version>2.2</rxtxcomm.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -142,12 +141,6 @@
             <version>${commons-lang3.version}</version>
         </dependency>
         <!-- 常用工具包 end -->
-        <!-- java桥 -->
-        <dependency>
-            <groupId>com.hik.vissim</groupId>
-            <artifactId>jacob</artifactId>
-            <version>${jacob.version}</version>
-        </dependency>
         <!-- windows 串口工具 -->
         <dependency>
             <groupId>com.hik.rxtxcomm</groupId>
