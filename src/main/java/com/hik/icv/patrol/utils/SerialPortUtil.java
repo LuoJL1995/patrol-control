@@ -1,6 +1,6 @@
 package com.hik.icv.patrol.utils;
 
-import com.hik.icv.patrol.vo.SerialPortParameter;
+import com.hik.icv.patrol.vo.SerialPortParameterVO;
 import gnu.io.*;
 
 import java.io.IOException;
@@ -49,7 +49,7 @@ public class SerialPortUtil {
      */
     public static SerialPort openSerialPort(String serialPortName)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
-        SerialPortParameter parameter = new SerialPortParameter(serialPortName);
+        SerialPortParameterVO parameter = new SerialPortParameterVO(serialPortName);
         return openSerialPort(parameter);
     }
 
@@ -65,7 +65,7 @@ public class SerialPortUtil {
      */
     public static SerialPort openSerialPort(String serialPortName, int baudRate)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
-        SerialPortParameter parameter = new SerialPortParameter(serialPortName, baudRate);
+        SerialPortParameterVO parameter = new SerialPortParameterVO(serialPortName, baudRate);
         return openSerialPort(parameter);
     }
 
@@ -82,7 +82,7 @@ public class SerialPortUtil {
      */
     public static SerialPort openSerialPort(String serialPortName, int baudRate, int timeout)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
-        SerialPortParameter parameter = new SerialPortParameter(serialPortName, baudRate);
+        SerialPortParameterVO parameter = new SerialPortParameterVO(serialPortName, baudRate);
         return openSerialPort(parameter, timeout);
     }
 
@@ -95,7 +95,7 @@ public class SerialPortUtil {
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
      */
-    public static SerialPort openSerialPort(SerialPortParameter parameter)
+    public static SerialPort openSerialPort(SerialPortParameterVO parameter)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
         return openSerialPort(parameter, 2000);
     }
@@ -110,7 +110,7 @@ public class SerialPortUtil {
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
      */
-    public static SerialPort openSerialPort(SerialPortParameter parameter, int timeout)
+    public static SerialPort openSerialPort(SerialPortParameterVO parameter, int timeout)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
         //通过端口名称得到端口
         CommPortIdentifier portIdentifier = CommPortIdentifier.getPortIdentifier(parameter.getSerialPortName());

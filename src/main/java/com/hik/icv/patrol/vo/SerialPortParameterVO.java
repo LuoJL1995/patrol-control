@@ -4,7 +4,7 @@ import gnu.io.SerialPort;
 
 import java.io.Serializable;
 
-public final class SerialPortParameter implements Serializable {
+public final class SerialPortParameterVO implements Serializable {
 
     private static final long serialVersionUID = 8874815910121927542L;
 
@@ -36,7 +36,7 @@ public final class SerialPortParameter implements Serializable {
      */
     private int parity;
 
-    public SerialPortParameter(String serialPortName) {
+    public SerialPortParameterVO(String serialPortName) {
         this.serialPortName = serialPortName;
         this.baudRate = 115200;
         this.dataBits = SerialPort.DATABITS_8;
@@ -44,7 +44,7 @@ public final class SerialPortParameter implements Serializable {
         this.parity = SerialPort.PARITY_NONE;
     }
 
-    public SerialPortParameter(String serialPortName, int baudRate) {
+    public SerialPortParameterVO(String serialPortName, int baudRate) {
         this.serialPortName = serialPortName;
         this.baudRate = baudRate;
         this.dataBits = SerialPort.DATABITS_8;
