@@ -5,8 +5,8 @@ import java.util.List;
 
 public class UsbUtil {
     //下边两个参数为系统中usb设备的VID和PID 需要自行配置
-    private static short idVendor = (short) 0xFFFF;
-    private static short idProduct = (short) 0x0001;
+    private static short idVendor = (short) 064F;
+    private static short idProduct = (short) 064F;
 
     public static void main(String[] args) {
         try {
@@ -23,27 +23,27 @@ public class UsbUtil {
         }
     }
 
-    public UsbPipe useUsb() throws Exception{
+    public static UsbPipe useUsb() throws Exception {
         UsbInterface iface = linkDevice();
         if (iface == null) {
             return null;
         }
-        UsbEndpoint receivedUsbEndpoint,sendUsbEndpoint;
+        UsbEndpoint receivedUsbEndpoint, sendUsbEndpoint;
 
-        sendUsbEndpoint = (UsbEndpoint)iface.getUsbEndpoints().get(0);
+        sendUsbEndpoint = (UsbEndpoint) iface.getUsbEndpoints().get(0);
         if (!sendUsbEndpoint.getUsbEndpointDescriptor().toString().contains("OUT")) {
             receivedUsbEndpoint = sendUsbEndpoint;
-            sendUsbEndpoint = (UsbEndpoint)iface.getUsbEndpoints().get(1);
+            sendUsbEndpoint = (UsbEndpoint) iface.getUsbEndpoints().get(1);
         } else {
-            receivedUsbEndpoint = (UsbEndpoint)iface.getUsbEndpoints().get(1);
+            receivedUsbEndpoint = (UsbEndpoint) iface.getUsbEndpoints().get(1);
         }
 
         //发送：
-        UsbPipe sendUsbPipe =  sendUsbEndpoint.getUsbPipe();
+        UsbPipe sendUsbPipe = sendUsbEndpoint.getUsbPipe();
         sendUsbPipe.open();
 
         //接收
-        final UsbPipe receivedUsbPipe =  receivedUsbEndpoint.getUsbPipe();
+        final UsbPipe receivedUsbPipe = receivedUsbEndpoint.getUsbPipe();
         receivedUsbPipe.open();
 
         new Thread(() -> {
@@ -56,11 +56,8 @@ public class UsbUtil {
         return sendUsbPipe;
     }
 
-    public UsbInterface linkDevice() throws Exception {
-
-        UsbDevice device;
-        device = findDevice(UsbHostManager.getUsbServices()
-                .getRootUsbHub());
+    public static UsbInterface linkDevice() throws Exception {
+        UsbDevice device = findDevice(UsbHostManager.getUsbServices().getRootUsbHub());
         if (device == null) {
             System.out.println("设备未找到！");
             return null;
@@ -78,7 +75,7 @@ public class UsbUtil {
         return iface;
     }
 
-    public void receivedMassge(UsbPipe usbPipe) throws Exception {
+    public static void receivedMassge(UsbPipe usbPipe) throws Exception {
         StringBuilder all = new StringBuilder();
         byte[] b = new byte[64];
         int length;
@@ -102,7 +99,7 @@ public class UsbUtil {
         //usbPipe.asyncSubmit(buff);//非阻塞
     }
 
-    public UsbDevice findDevice(UsbHub hub) {
+    public static UsbDevice findDevice(UsbHub hub) {
         UsbDevice device;
         List list = hub.getAttachedUsbDevices();
         for (int i = 0; i < list.size(); i++) {
