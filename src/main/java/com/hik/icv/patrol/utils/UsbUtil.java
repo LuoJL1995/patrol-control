@@ -5,12 +5,12 @@ import java.util.List;
 
 public class UsbUtil {
     //下边两个参数为系统中usb设备的VID和PID 需要自行配置
-    private static short idVendor = (short) 064F;
-    private static short idProduct = (short) 064F;
+    private static short idVendor = (short) -1;
+    private static short idProduct = (short) 22136;
 
     public static void main(String[] args) {
         try {
-            UsbPipe sendUsbPipe = new UsbUtil().useUsb();
+            UsbPipe sendUsbPipe = useUsb();
             if (sendUsbPipe != null) {
                 byte[] buff = new byte[64];
                 for (int i = 0; i < 9; i++) {
@@ -71,7 +71,12 @@ public class UsbUtil {
         } else {
             return null;
         }
-        iface.claim(usbInterface -> true);
+        iface.claim(new UsbInterfacePolicy() {
+            @Override
+            public boolean forceClaim(UsbInterface usbInterface) {
+                return true;
+            }
+        });
         return iface;
     }
 
