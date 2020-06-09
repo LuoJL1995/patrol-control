@@ -35,7 +35,7 @@
     </properties>
 
     <dependencies>
-        <!-- spring-boot-start -->
+        <!-- spring-boot start -->
         <!-- web场景所需的依赖 -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -47,7 +47,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <version>${spring-boot.version}</version>
-            <!--指定作用域为test，此依赖只在test时起作用-->
+            <!-- 指定作用域为test，此依赖只在test时起作用 -->
             <scope>test</scope>
         </dependency>
         <!-- junit5启动器 -->
@@ -70,7 +70,7 @@
             <version>${tomcat-embed-jasper.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- spring-boot-end -->
+        <!-- spring-boot end -->
         <!-- spring-context -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -78,7 +78,7 @@
             <version>${spring-context.version}</version>
             <scope>compile</scope>
         </dependency>
-        <!--swagger2-->
+        <!-- swagger2 -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -90,7 +90,7 @@
             <version>${swagger.version}</version>
         </dependency>
         <!-- 常用工具包 start -->
-        <!--json-->
+        <!-- json -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -141,6 +141,7 @@
             <version>${commons-lang3.version}</version>
         </dependency>
         <!-- 常用工具包 end -->
+        <!-- 串口模块 start -->
         <!-- windows 串口工具 -->
         <dependency>
             <groupId>com.hik.rxtxcomm</groupId>
@@ -148,11 +149,16 @@
             <version>${rxtxcomm.version}</version>
         </dependency>
         <!-- linux 串口工具 -->
-        <!--<dependency>
+        <dependency>
             <groupId>com.hik.rxtxcomm</groupId>
             <artifactId>rxtxcomm-linux</artifactId>
             <version>${rxtxcomm.version}</version>
-        </dependency>-->
+        </dependency>
+        <!-- 串口模块 end -->
+        <!-- USB通信模块 start -->
+
+
+        <!-- USB通信模块 end -->
     </dependencies>
 
     <build>
