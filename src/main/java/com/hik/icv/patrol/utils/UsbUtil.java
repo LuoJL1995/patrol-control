@@ -9,28 +9,18 @@ public class UsbUtil {
     private static short idProduct = (short) 0x0001;
 
     public static void main(String[] args) {
-        byte[] buff=null;
         try {
             UsbPipe sendUsbPipe = new UsbUtil().useUsb();
-            //本人测试时 是使用公司的一个读卡器主要对银行卡和身份证进行读取写等相关操作
-            //下边为发送的指令,目前大多usb硬件设备都是接受HEX 16进制指令
-            //那么如下指令为:363600028000000280 的16进制指令 注意2位为一组16进制字符
-            buff[0] = (byte) 0x36;
-            buff[1] = (byte) 0x36;
-            buff[2] = (byte) 0x00;
-            buff[3] = (byte) 0x02;
-            buff[4] = (byte) 0x80;
-            buff[5] = (byte) 0x00;
-            buff[6] = (byte) 0x00;
-            buff[7] = (byte) 0x02;
-            buff[8] = (byte) 0x80;
-            sendMassge(sendUsbPipe, buff);
-
-        } catch (
-                Exception e) {
+            if (sendUsbPipe != null) {
+                byte[] buff = new byte[64];
+                for (int i = 0; i < 9; i++) {
+                    buff[i] = (byte) i;
+                    sendMassge(sendUsbPipe, buff);
+                }
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
 
     public UsbPipe useUsb() throws Exception{
