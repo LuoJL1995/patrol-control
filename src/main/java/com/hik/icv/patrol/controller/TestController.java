@@ -26,7 +26,7 @@ public class TestController {
     public String executeAsyncPool() {
         System.out.println("start");
         //调用service层的任务
-        asyncService.serialPortAction();
+        asyncService.executeAsync();
         System.out.println("end");
         return "success";
     }

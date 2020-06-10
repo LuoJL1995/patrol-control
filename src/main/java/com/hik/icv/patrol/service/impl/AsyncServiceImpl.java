@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.TooManyListenersException;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
@@ -31,22 +32,10 @@ public class AsyncServiceImpl implements AsyncService {
     }
 
     @Override
-    @Async("asyncServiceExecutor")
+    @PostConstruct
     public void serialPortAction() {
         try {
             final SerialPort serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
-            new Thread(() -> {
-                while (true) {
-                    String s = "hello";
-                    byte[] bytes = s.getBytes();
-                    SerialPortUtil.sendData(serialPort, bytes);//发送数据
-                    try {
-                        Thread.sleep(2000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }).start();
             //设置串口的listener
             SerialPortUtil.setListenerToSerialPort(serialPort, event -> {
                 //数据通知
@@ -56,12 +45,6 @@ public class AsyncServiceImpl implements AsyncService {
                     System.out.println("收到的数据：" + new String(bytes));
                 }
             });
-            try {
-                // sleep 一段时间保证线程可以执行完
-                Thread.sleep(3 * 30 * 1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | TooManyListenersException e) {
             e.printStackTrace();
         }
