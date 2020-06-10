@@ -27,6 +27,7 @@
         <jodatime.version>2.10.2</jodatime.version>
         <dozer.version>5.5.1</dozer.version>
         <commons-lang3.version>3.9</commons-lang3.version>
+        <netty.version>4.1.43.Final</netty.version>
         <rxtxcomm.version>2.2</rxtxcomm.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -142,6 +143,12 @@
         </dependency>
         <!-- 常用工具包 end -->
         <!-- 串口模块 start -->
+        <!-- netty -->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+            <version>${netty.version}</version>
+        </dependency>
         <!-- windows 串口工具 -->
         <dependency>
             <groupId>com.hik.rxtxcomm</groupId>
