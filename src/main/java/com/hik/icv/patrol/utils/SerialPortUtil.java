@@ -228,9 +228,9 @@ public class SerialPortUtil {
     public static void setListenerToSerialPort(SerialPort serialPort, SerialPortEventListener listener) throws TooManyListenersException {
         //给串口添加事件监听
         serialPort.addEventListener(listener);
-        //串口有数据监听
+        //设置串口有数据的事件true有效,false无效
         serialPort.notifyOnDataAvailable(true);
-        //中断事件监听
+        //设置中断事件true有效,false无效
         serialPort.notifyOnBreakInterrupt(true);
     }
 
