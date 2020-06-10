@@ -8,7 +8,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.TooManyListenersException;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
