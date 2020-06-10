@@ -11,6 +11,8 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.TooManyListenersException;
 
+import static com.hik.icv.patrol.common.Constant.SERIALPORT_TIMEOUT;
+
 /**
  * @Description 串口工具类
  * @Author LuoJiaLei
@@ -39,13 +41,15 @@ public class SerialPortUtil {
     }
 
     /**
-     * 打开串口
-     *
-     * @param serialPortName 串口名称
-     * @return SerialPort 串口对象
+     * @Description 打开串口(设置串口名称)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:25 
+     * @param serialPortName:  串口名称
      * @throws NoSuchPortException               对应串口不存在
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
+     * @return gnu.io.SerialPort 串口对象
      */
     public static SerialPort openSerialPort(String serialPortName)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
@@ -54,14 +58,16 @@ public class SerialPortUtil {
     }
 
     /**
-     * 打开串口
-     *
-     * @param serialPortName 串口名称
-     * @param baudRate       波特率
-     * @return SerialPort 串口对象
+     * @Description 打开串口(设置串口名称与波特率)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:38
+     * @param serialPortName: 串口名称
+     * @param baudRate: 波特率
      * @throws NoSuchPortException               对应串口不存在
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
+     * @return gnu.io.SerialPort 串口对象
      */
     public static SerialPort openSerialPort(String serialPortName, int baudRate)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
@@ -70,15 +76,17 @@ public class SerialPortUtil {
     }
 
     /**
-     * 打开串口
-     *
-     * @param serialPortName 串口名称
-     * @param baudRate       波特率
-     * @param timeout        串口打开超时时间
-     * @return SerialPort 串口对象
+     * @Description 打开串口(设置串口名称、波特率与超时时间)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:41
+     * @param serialPortName: 串口名称
+     * @param baudRate: 波特率
+     * @param timeout: 串口打开超时时间
      * @throws NoSuchPortException               对应串口不存在
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
+     * @return gnu.io.SerialPort 串口对象
      */
     public static SerialPort openSerialPort(String serialPortName, int baudRate, int timeout)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
@@ -87,28 +95,29 @@ public class SerialPortUtil {
     }
 
     /**
-     * 打开串口
-     *
-     * @param parameter 串口参数
-     * @return SerialPort 串口对象
-     * @throws NoSuchPortException               对应串口不存在
-     * @throws PortInUseException                串口在使用中
-     * @throws UnsupportedCommOperationException 不支持操作操作
+     * @Description 打开串口(设置2s超时)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:43
+     * @param parameter: 串口参数对象
+     * @return gnu.io.SerialPort 串口对象
      */
     public static SerialPort openSerialPort(SerialPortParameterVO parameter)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {
-        return openSerialPort(parameter, 2000);
+        return openSerialPort(parameter, SERIALPORT_TIMEOUT);
     }
 
     /**
-     * 打开串口
-     *
-     * @param parameter 串口参数
-     * @param timeout   串口打开超时时间
-     * @return SerialPort串口对象
+     * @Description 打开串口(通过设置好的参数)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:49
+     * @param parameter: 串口参数对象
+     * @param timeout: 串口打开超时时间
      * @throws NoSuchPortException               对应串口不存在
      * @throws PortInUseException                串口在使用中
      * @throws UnsupportedCommOperationException 不支持操作操作
+     * @return gnu.io.SerialPort 串口对象
      */
     public static SerialPort openSerialPort(SerialPortParameterVO parameter, int timeout)
             throws NoSuchPortException, PortInUseException, UnsupportedCommOperationException {

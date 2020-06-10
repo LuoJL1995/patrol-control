@@ -15,8 +15,19 @@ public class SerialPortUtilTest {
     @Test
     public void getSystemPortList() {
 
+        //获取可用的串口列表
         List<String> portList = SerialPortUtil.getSerialPortList();
         System.out.println(portList);
+
+        //通过串口名称打开串口
+        try {
+            SerialPortUtil.openSerialPort("COM2");
+        } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
+            e.printStackTrace();
+        }
+
+
+
 
     }
 
