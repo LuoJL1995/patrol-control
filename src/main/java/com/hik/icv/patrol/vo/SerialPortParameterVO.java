@@ -5,7 +5,7 @@ import gnu.io.SerialPort;
 import java.io.Serializable;
 
 /**
- * @Description 串口实体类
+ * @Description 串口参数对象
  * @Author LuoJiaLei
  * @Date 2020/6/8
  * @Time 13:51  
