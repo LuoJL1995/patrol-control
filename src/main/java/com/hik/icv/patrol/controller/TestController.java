@@ -1,14 +1,11 @@
 package com.hik.icv.patrol.controller;
 
+import com.hik.icv.patrol.service.AsyncService;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.File;
-import java.io.IOException;
 
 /**
  * @Description 测试
@@ -19,21 +16,22 @@ import java.io.IOException;
 @RestController
 public class TestController {
 
+    @Autowired
+    private AsyncService asyncService;
 
-    @ApiOperation(value = "导入仿真文件", notes = "导入仿真文件", httpMethod = "POST")
+    @ApiOperation(value = "串口线程", notes = "串口线程", httpMethod = "GET")
     @ApiImplicitParams({
     })
-    @RequestMapping(value = "fileUpload")
-    public void fileUpload(@ApiParam(value = "file", required = false) MultipartFile file) {
-        String fileName = file.getOriginalFilename();
-        String filePath = "C:\\Users\\Administrator\\Desktop\\test2\\";
-        File dest = new File(filePath + fileName);
-        try {
-            file.transferTo(dest);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    @RequestMapping(value = "serialPortAction")
+    public String executeAsyncPool() {
+        System.out.println("start");
+        //调用service层的任务
+        asyncService.serialPortAction();
+        System.out.println("end");
+        return "success";
     }
+
+
 
 
 }

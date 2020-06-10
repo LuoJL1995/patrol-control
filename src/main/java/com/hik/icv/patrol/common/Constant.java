@@ -16,9 +16,17 @@ public class Constant {
      */
     public static final String TIME_ZONE = "GMT+8";
     /**
+     * 默认串口
+     */
+    public static final String SERIALPORT_NAME = "COM2";
+    /**
      * 串口默认超时
      */
     public static final int SERIALPORT_TIMEOUT = 2000;
+    /**
+     * 串口默认比特率
+     */
+    public static final int SERIALPORT_BAUDRATE = 115200;
 
 
 
