@@ -26,9 +26,6 @@ public class SerialPortUtilTest {
             e.printStackTrace();
         }
 
-
-
-
     }
 
     /**
