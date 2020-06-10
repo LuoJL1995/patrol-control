@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.TooManyListenersException;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
@@ -35,14 +36,11 @@ public class AsyncServiceImpl implements AsyncService {
     public void serialPortAction() {
         try {
             final SerialPort serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
-            //启动一个线程每2s向串口发送数据，发送1000次hello
             new Thread(() -> {
-                int i = 1;
-                while (i < 1000) {
+                while (true) {
                     String s = "hello";
                     byte[] bytes = s.getBytes();
                     SerialPortUtil.sendData(serialPort, bytes);//发送数据
-                    i++;
                     try {
                         Thread.sleep(2000);
                     } catch (InterruptedException e) {
