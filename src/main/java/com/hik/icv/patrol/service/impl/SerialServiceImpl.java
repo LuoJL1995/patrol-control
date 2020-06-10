@@ -24,12 +24,21 @@ public class SerialServiceImpl implements SerialService {
 
     private final static Logger logger = LoggerFactory.getLogger(SerialServiceImpl.class);
 
-    @Override
-    @PostConstruct
-    public void serialPortAction() {
+    private static SerialPort serialPort = null;
+
+    static {
         try {
             //默认开启串口COM2，并设置波特率115200超时时间2秒
-            final SerialPort serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
+            serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
+        } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
+            logger.error(ResultEnum.SERIAL_OPEN_EXCEPTION.getName() + e);
+        }
+    }
+
+    @Override
+    @PostConstruct
+    public void serialListen() {
+        try {
             //设置串口的listener
             SerialPortUtil.setListenerToSerialPort(serialPort, event -> {
                 //数据通知
@@ -39,8 +48,17 @@ public class SerialServiceImpl implements SerialService {
                     System.out.println("收到的数据：" + new String(bytes));
                 }
             });
-        } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | TooManyListenersException e) {
+        } catch (TooManyListenersException e) {
             logger.error(ResultEnum.SERIAL_LISTEN_EXCEPTION.getName() + e);
         }
     }
+
+    @Override
+    public void serialSendData() {
+        String s = "hello";
+        byte[] bytes = s.getBytes();
+        SerialPortUtil.sendData(serialPort, bytes);//发送数据
+    }
+
+
 }

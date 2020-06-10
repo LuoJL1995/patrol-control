@@ -8,6 +8,14 @@ public interface SerialService {
      * @Date 2020/6/10
      * @Time 11:13
      */
-    void serialPortAction();
+    void serialListen();
+
+    /**
+     * @Description 串口传输数据
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 15:30  
+     */
+    void serialSendData();
 
 }
