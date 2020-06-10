@@ -16,11 +16,4 @@ public interface AsyncService {
      */
     void executeAsync();
 
-    /**
-     * @Description 串口打开并监听
-     * @Author LuoJiaLei
-     * @Date 2020/6/10
-     * @Time 11:13
-     */
-    void serialPortAction();
 }

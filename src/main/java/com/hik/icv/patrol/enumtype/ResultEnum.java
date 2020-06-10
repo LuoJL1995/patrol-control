@@ -17,10 +17,8 @@ public enum ResultEnum implements IResultEnum {
     INPUT_EMPTY("入参为空", "100002"),
     //IO异常
     IO_EXCEPTION("IO异常", "100003"),
-    //文件异常
-    FILE_EXCEPTION("文件异常", "100004"),
-    //仿真异常
-    SIMULATION_EXCEPTION("仿真异常", "100005");
+    //串口监听异常
+    SERIAL_LISTEN_EXCEPTION("串口监听异常", "100004");
 
     private String name;
     private String value;
