@@ -35,6 +35,21 @@ public class AsyncServiceImpl implements AsyncService {
     public void serialPortAction() {
         try {
             final SerialPort serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
+            //启动一个线程每2s向串口发送数据，发送1000次hello
+            new Thread(() -> {
+                int i = 1;
+                while (i < 1000) {
+                    String s = "hello";
+                    byte[] bytes = s.getBytes();
+                    SerialPortUtil.sendData(serialPort, bytes);//发送数据
+                    i++;
+                    try {
+                        Thread.sleep(2000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }).start();
             //设置串口的listener
             SerialPortUtil.setListenerToSerialPort(serialPort, event -> {
                 //数据通知
@@ -44,6 +59,12 @@ public class AsyncServiceImpl implements AsyncService {
                     System.out.println("收到的数据：" + new String(bytes));
                 }
             });
+            try {
+                // sleep 一段时间保证线程可以执行完
+                Thread.sleep(3 * 30 * 1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException | TooManyListenersException e) {
             e.printStackTrace();
         }
