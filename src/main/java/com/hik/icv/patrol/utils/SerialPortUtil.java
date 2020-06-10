@@ -138,11 +138,12 @@ public class SerialPortUtil {
         }
     }
 
-
     /**
-     * 关闭串口
-     *
-     * @param serialPort 要关闭的串口对象
+     * @Description 关闭串口
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:54
+     * @param serialPort: 要关闭的串口对象
      */
     public static void closeSerialPort(SerialPort serialPort) {
         if (serialPort != null) {
@@ -152,10 +153,12 @@ public class SerialPortUtil {
     }
 
     /**
-     * 向串口发送数据
-     *
-     * @param serialPort 串口对象
-     * @param data       发送的数据
+     * @Description 向串口发送数据
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:54
+     * @param serialPort: 串口对象
+     * @param data: 发送的数据
      */
     public static void sendData(SerialPort serialPort, byte[] data) {
         OutputStream os = null;
@@ -178,10 +181,12 @@ public class SerialPortUtil {
     }
 
     /**
-     * 从串口读取数据
-     *
-     * @param serialPort 要读取的串口
-     * @return 读取的数据
+     * @Description 从串口读取数据
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:55
+     * @param serialPort: 要读取的串口对象
+     * @return byte[] 读取出的数据
      */
     public static byte[] readData(SerialPort serialPort) {
         InputStream is = null;
@@ -212,10 +217,12 @@ public class SerialPortUtil {
     }
 
     /**
-     * 给串口设置监听
-     *
-     * @param serialPort serialPort 要读取的串口
-     * @param listener   SerialPortEventListener监听对象
+     * @Description 给串口设置监听
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:57
+     * @param serialPort: 要读取的串口
+     * @param listener: SerialPortEventListener监听对象
      * @throws TooManyListenersException 监听对象太多
      */
     public static void setListenerToSerialPort(SerialPort serialPort, SerialPortEventListener listener) throws TooManyListenersException {
