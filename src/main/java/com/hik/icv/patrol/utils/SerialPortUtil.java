@@ -20,11 +20,12 @@ import java.util.TooManyListenersException;
 public class SerialPortUtil {
 
     /**
-     * 获得系统可用的端口名称列表(COM0、COM1、COM2等等)
-     *
-     * @return List<String>可用端口名称列表
+     * @Description 获得系统可用的端口名称列表(COM0 、 COM1 、 COM2等等)
+     * @Author LuoJiaLei
+     * @Date 2020/6/10
+     * @Time 9:22  
+     * @return java.util.List<java.lang.String> 可用端口名称列表
      */
-
     @SuppressWarnings("unchecked")
     public static List<String> getSerialPortList() {
         List<String> systemPorts = new ArrayList<>();
