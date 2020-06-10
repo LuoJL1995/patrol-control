@@ -2,7 +2,6 @@ package com.hik.icv.patrol.service.impl;
 
 import com.hik.icv.patrol.enumtype.ResultEnum;
 import com.hik.icv.patrol.service.SerialService;
-import com.hik.icv.patrol.utils.CollectionUtil;
 import com.hik.icv.patrol.utils.SerialPortUtil;
 import gnu.io.*;
 import org.slf4j.Logger;
@@ -10,7 +9,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
-
 import java.util.TooManyListenersException;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
