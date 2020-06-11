@@ -8,6 +8,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
+import javax.annotation.PostConstruct;
+
 /**
  * Netty
  * 服务端
@@ -28,6 +30,7 @@ public class NettyServer {
     @Autowired
     ServerOutboundHandler serverOutboundHandler;
 
+    @PostConstruct
     public void startServer() {
         System.out.println("服务端启动成功");
         //创建两个线程组，用于接收客户端的请求任务,创建两个线程组是因为netty采用的是反应器设计模式
