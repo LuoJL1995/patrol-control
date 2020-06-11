@@ -71,6 +71,12 @@
             <version>${tomcat-embed-jasper.version}</version>
             <scope>provided</scope>
         </dependency>
+        <!-- 页面 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <version>${spring-boot.version}</version>
+        </dependency>
         <!-- spring-boot end -->
         <!-- spring-context -->
         <dependency>
