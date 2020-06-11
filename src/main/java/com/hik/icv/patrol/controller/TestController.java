@@ -1,7 +1,9 @@
 package com.hik.icv.patrol.controller;
 
+import com.hik.icv.patrol.netty.NettyClient;
 import com.hik.icv.patrol.service.AsyncService;
 import com.hik.icv.patrol.service.SerialService;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiImplicitParams;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,11 @@ public class TestController {
     @Autowired
     private SerialService serialService;
 
+    @Autowired
+    private NettyClient nettyClient;
+
+
+
     @ApiOperation(value = "线程", notes = "线程", httpMethod = "GET")
     @ApiImplicitParams({
     })
@@ -41,6 +48,16 @@ public class TestController {
     @RequestMapping(value = "serialSendData")
     public String serialSendData() {
         serialService.serialSendData();
+        return "success";
+    }
+
+    @ApiOperation(value = "串口netty发送消息", notes = "串口发送消息", httpMethod = "GET")
+    @ApiImplicitParams({
+            @ApiImplicitParam(name = "message", value = "消息", required = false, dataType = "String", paramType = "query"),
+    })
+    @RequestMapping(value = "serialSendNetty")
+    public String serialSendNetty(String message) {
+        nettyClient.writeAndFlush(message);
         return "success";
     }
 
