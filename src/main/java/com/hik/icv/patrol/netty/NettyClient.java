@@ -9,11 +9,9 @@ import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.rxtx.RxtxChannel;
 import io.netty.channel.rxtx.RxtxChannelConfig;
 import io.netty.channel.rxtx.RxtxDeviceAddress;
-import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -58,15 +56,15 @@ public class NettyClient {
                     //立即发送数据
                     .option(ChannelOption.TCP_NODELAY, true)
                     //TCP会主动探测空闲连接的有效性。可以将此功能视为TCP的心跳机制，需要注意的是：默认的心跳间隔是7200s即2小时
-                    .option(ChannelOption.SO_KEEPALIVE, true)
+                   .option(ChannelOption.SO_KEEPALIVE, true)
                     //Netty参数，连接超时毫秒数
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
-                    .handler(new ChannelInitializer<SocketChannel>() {
+                    .handler(new ChannelInitializer<RxtxChannel>() {
                         //设置处理请求的逻辑处理类
                         @Override
-                        protected void initChannel(SocketChannel ch) throws Exception {
+                        protected void initChannel(RxtxChannel rc) throws Exception {
                             //ChannelPipeline是handler的任务组，里面有多个handler
-                            ChannelPipeline pipeline = ch.pipeline();
+                            ChannelPipeline pipeline = rc.pipeline();
                             //watch dog 每30秒钟会发送一条空数据用于检测
                             pipeline.addLast(new IdleStateHandler(30, 0, 0));
                             //配置自定义编码器
