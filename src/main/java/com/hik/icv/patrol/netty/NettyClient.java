@@ -1,6 +1,9 @@
 package com.hik.icv.patrol.netty;
 
+import com.hik.icv.patrol.utils.ByteUtil;
+import com.hik.icv.patrol.utils.CRC16Util;
 import io.netty.bootstrap.Bootstrap;
+import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFactory;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -98,5 +101,20 @@ public class NettyClient {
         workGroup.shutdownGracefully();
     }
 
+
+    /**
+     * @Description 手动写入数据
+     * @Author LuoJiaLei
+     * @Date 2020/6/11
+     * @Time 17:32
+     * @param hexString: 字符串
+     */
+    public void writeAndFlush(String hexString) {
+        String str = CRC16Util.crcDeal(hexString);
+        byte[] bytes = ByteUtil.hexStringToBytes(str);
+        ByteBuf buffer = channel.alloc().buffer();
+        ByteBuf byteBuf = buffer.writeBytes(bytes);
+        channel.writeAndFlush(byteBuf);
+    }
 
 }
