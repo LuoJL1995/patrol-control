@@ -5,10 +5,7 @@ import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
-
-import javax.annotation.PostConstruct;
 
 /**
  * Netty
@@ -17,20 +14,9 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class NettyServer {
 
-    //四个处理请求的逻辑类
-    @Autowired
-    ServerInboundHandler serverInboundHandler;
 
-    @Autowired
-    ServerInboundGetTimeHandler serverInboundGetTimeHandler;
 
-    @Autowired
-    ServerLastOutboundHandler serverLastOutboundHandler;
 
-    @Autowired
-    ServerOutboundHandler serverOutboundHandler;
-
-    @PostConstruct
     public void startServer() {
         System.out.println("服务端启动成功");
         //创建两个线程组，用于接收客户端的请求任务,创建两个线程组是因为netty采用的是反应器设计模式
@@ -55,10 +41,7 @@ public class NettyServer {
                             //ChannelPipeline是handler的任务组，里面有多个handler
                             ChannelPipeline pipeline = ch.pipeline();
                             //逻辑处理类
-                            pipeline.addLast(serverLastOutboundHandler);
-                            pipeline.addLast(serverOutboundHandler);
-                            pipeline.addLast(serverInboundHandler);
-                            pipeline.addLast(serverInboundGetTimeHandler);
+
                         }
                     });
 

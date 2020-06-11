@@ -8,7 +8,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import java.util.TooManyListenersException;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
@@ -26,17 +25,16 @@ public class SerialServiceImpl implements SerialService {
 
     private static SerialPort serialPort = null;
 
-    static {
+    /*static {
         try {
             //默认开启串口COM2，并设置波特率115200超时时间2秒
             serialPort = SerialPortUtil.openSerialPort(SERIALPORT_NAME, SERIALPORT_BAUDRATE);
         } catch (NoSuchPortException | PortInUseException | UnsupportedCommOperationException e) {
             logger.error(ResultEnum.SERIAL_OPEN_EXCEPTION.getName() + e);
         }
-    }
+    }*/
 
     @Override
-    @PostConstruct
     public void serialListen() {
         try {
             //设置串口的listener
