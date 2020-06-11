@@ -1,3 +1,4 @@
+/*
 package com.hik.icv.patrol.netty;
 
 import io.netty.bootstrap.Bootstrap;
@@ -13,20 +14,21 @@ import io.netty.handler.timeout.IdleStateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
 import static com.hik.icv.patrol.common.Constant.SERIALPORT_NAME;
 
+*/
 /**
  * @Description netty 客户端
  * @Author LuoJiaLei
  * @Date 2020/6/11
  * @Time 16:15
- */
+ *//*
+
 @Component
-public class NettyClient {
+public class NettyClientCopy {
 
     @Autowired
     ClientHandler clientHandler;
@@ -40,19 +42,19 @@ public class NettyClient {
     private RxtxChannel channel;
 
 
-    /**
+    */
+/**
      * @Description 通过netty通信方式连接串口
      * @Author LuoJiaLei
      * @Date 2020/6/11
      * @Time 16:10
-     */
-    @PostConstruct
-    public void serialInitial() {
+     *//*
+
+    //@PostConstruct
+    public void run() {
         try {
-            //设置线程组
-            bootstrap.group(workGroup)
-                    //设置通道为阻塞IO
-                    //.channel(NioServerSocketChannel.class)
+            OioEventLoopGroup group = new OioEventLoopGroup();
+            bootstrap.group(group)
                     //立即发送数据
                     .option(ChannelOption.TCP_NODELAY, true)
                     //TCP会主动探测空闲连接的有效性。可以将此功能视为TCP的心跳机制，需要注意的是：默认的心跳间隔是7200s即2小时
@@ -61,7 +63,6 @@ public class NettyClient {
                     .option(ChannelOption.CONNECT_TIMEOUT_MILLIS, 3000)
                     .channelFactory((ChannelFactory<RxtxChannel>) () -> channel)
                     .handler(new ChannelInitializer<RxtxChannel>() {
-                        //设置处理请求的逻辑处理类
                         @Override
                         protected void initChannel(RxtxChannel rc) throws Exception {
                             //ChannelPipeline是handler的任务组，里面有多个handler
@@ -87,16 +88,19 @@ public class NettyClient {
         }
     }
 
-    /**
+
+    */
+/**
      * @Description netty优雅停机（jvm关闭的时候回收资源）
      * @Author LuoJiaLei
      * @Date 2020/6/11
      * @Time 16:29
-     */
+     *//*
+
     @PreDestroy
     protected void serialDestory() {
         workGroup.shutdownGracefully();
     }
 
 
-}
+}*/
