@@ -22,13 +22,8 @@ public class HexStringUtil {
     public static boolean isHex(String s) {
         //去空格防止转换问题
         s = s.replace(" ", "");
-        boolean flag = false;
-        try {
-            Long.parseLong(s, 16);
-            flag = true;
-        } catch (Exception ignored) {
-        }
-        return flag;
+        String regex = "^[A-Fa-f0-9]+$";
+        return s.matches(regex);
     }
 
     /**
