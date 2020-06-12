@@ -1,10 +1,12 @@
 package com.hik.icv.patrol.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.math.BigDecimal;
 
 public class ByteUtil {
     public static byte[] hexStringToBytes(String hexString) {
-        if (hexString == null || hexString.equals("")) {
+        if (StringUtils.isEmpty(hexString)) {
             return null;
         }
         // toUpperCase将字符串中的所有字符转换为大写

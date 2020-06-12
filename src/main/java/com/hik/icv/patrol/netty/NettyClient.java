@@ -1,7 +1,7 @@
 package com.hik.icv.patrol.netty;
 
 import com.hik.icv.patrol.utils.ByteUtil;
-import com.hik.icv.patrol.utils.CRC16Util;
+import com.hik.icv.patrol.utils.HexStringUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelFactory;
@@ -110,8 +110,14 @@ public class NettyClient {
      * @param message: 字符串
      */
     public void writeAndFlush(String message) {
-        message = CRC16Util.strTo16(message);
+        //判断信息是否16进制
+        if (!HexStringUtil.isHex(message)) {
+            //string转16进制
+            message = HexStringUtil.stringToHex(message);
+        }
+        //16进制转byte
         byte[] bytes = ByteUtil.hexStringToBytes(message);
+        //比特写入缓存
         ByteBuf buffer = channel.alloc().buffer();
         buffer.writeBytes(bytes);
         channel.writeAndFlush(buffer);

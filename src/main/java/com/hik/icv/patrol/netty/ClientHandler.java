@@ -1,7 +1,7 @@
 package com.hik.icv.patrol.netty;
 
 import com.hik.icv.patrol.utils.ByteUtil;
-import com.hik.icv.patrol.utils.CRC16Util;
+import com.hik.icv.patrol.utils.HexStringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -12,6 +12,8 @@ import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
 
 /**
  * @Description 客户端逻辑处理类
@@ -47,7 +49,13 @@ public class ClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-        System.out.println(msg.toString(CharsetUtil.UTF_8));
+        String message = msg.toString(StandardCharsets.UTF_8);
+        //判断信息是否16进制
+        if (!HexStringUtil.isHex(message)) {
+            //16进制转String
+            message = HexStringUtil.hexToString(message);
+        }
+        System.out.println(message);
     }
 
     /**
