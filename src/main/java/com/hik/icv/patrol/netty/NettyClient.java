@@ -4,6 +4,7 @@ import com.hik.icv.patrol.utils.ByteUtil;
 import com.hik.icv.patrol.utils.HexStringUtil;
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
+import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFactory;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
@@ -13,6 +14,7 @@ import io.netty.channel.rxtx.RxtxChannel;
 import io.netty.channel.rxtx.RxtxChannelConfig;
 import io.netty.channel.rxtx.RxtxDeviceAddress;
 import io.netty.handler.timeout.IdleStateHandler;
+import io.netty.util.CharsetUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -123,6 +125,7 @@ public class NettyClient {
         ByteBuf buffer = channel.alloc().buffer();
         buffer.writeBytes(bytes);
         channel.writeAndFlush(buffer);
+        /*channel.writeAndFlush(Unpooled.copiedBuffer(message, CharsetUtil.UTF_8));*/
     }
 
 }

@@ -49,12 +49,9 @@ public class ClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
      */
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, ByteBuf msg) throws Exception {
-        String message = msg.toString(StandardCharsets.UTF_8);
-        //判断信息是否16进制
-        if (!HexStringUtil.isHex(message)) {
-            //16进制转String
-            message = HexStringUtil.hexToString(message);
-        }
+        byte[] bytes = new byte[msg.readableBytes()];
+        msg.getBytes(msg.readerIndex(), bytes);
+        String message = new String(bytes, 0, msg.readableBytes());
         System.out.println(message);
     }
 
