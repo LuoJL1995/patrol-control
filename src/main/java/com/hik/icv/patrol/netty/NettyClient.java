@@ -115,6 +115,8 @@ public class NettyClient {
             //string转16进制
             message = HexStringUtil.stringToHex(message);
         }
+        //去空格改大写
+        message = message.replace(" ", "").toUpperCase();
         //16进制转byte
         byte[] bytes = ByteUtil.hexStringToBytes(message);
         //比特写入缓存

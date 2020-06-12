@@ -32,7 +32,7 @@ public class HexStringUtil {
     }
 
     /**
-     * @Description 字符串转化成为16进制字符串
+     * @Description String转16进制
      * @Author LuoJiaLei
      * @Date 2020/6/12
      * @Time 9:58
@@ -50,7 +50,7 @@ public class HexStringUtil {
     }
 
     /**
-     * @Description 16进制转换成为string类型字符串
+     * @Description 16进制转String
      * @Author LuoJiaLei
      * @Date 2020/6/12
      * @Time 9:57
