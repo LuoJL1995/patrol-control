@@ -1,17 +1,17 @@
 package com.hik.icv.patrol.service.impl;
 
 import com.hik.icv.patrol.enumtype.ResultEnum;
+import com.hik.icv.patrol.netty.NettyClient;
 import com.hik.icv.patrol.service.SerialService;
 import com.hik.icv.patrol.utils.SerialPortUtil;
-import gnu.io.*;
+import gnu.io.SerialPort;
+import gnu.io.SerialPortEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.TooManyListenersException;
-
-import static com.hik.icv.patrol.common.Constant.SERIALPORT_BAUDRATE;
-import static com.hik.icv.patrol.common.Constant.SERIALPORT_NAME;
 
 /**
  * @author LuoJialei
@@ -20,6 +20,9 @@ import static com.hik.icv.patrol.common.Constant.SERIALPORT_NAME;
  */
 @Service("serialService")
 public class SerialServiceImpl implements SerialService {
+
+    @Autowired
+    private NettyClient nettyClient;
 
     private final static Logger logger = LoggerFactory.getLogger(SerialServiceImpl.class);
 
@@ -56,6 +59,11 @@ public class SerialServiceImpl implements SerialService {
         String s = "hello";
         byte[] bytes = s.getBytes();
         SerialPortUtil.sendData(serialPort, bytes);//发送数据
+    }
+
+    @Override
+    public void nettySerialSendData(String message) {
+        nettyClient.writeAndFlush(message);
     }
 
 

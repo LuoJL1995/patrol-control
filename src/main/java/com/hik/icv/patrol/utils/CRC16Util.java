@@ -1,5 +1,9 @@
 package com.hik.icv.patrol.utils;
 
+import org.apache.commons.lang3.StringUtils;
+
+import java.nio.charset.StandardCharsets;
+
 public class CRC16Util {
     static byte[] crc16_tab_h = {(byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0,
             (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1, (byte) 0x81, (byte) 0x40, (byte) 0x01, (byte) 0xC0, (byte) 0x80, (byte) 0x41, (byte) 0x00, (byte) 0xC1,
@@ -104,4 +108,52 @@ public class CRC16Util {
         String crcCheckHexStr = CRC16Util.getCrc(crcCheck);
         System.out.println(crcCheckHexStr);
     }
+
+    /**
+     * @Description 字符串转化成为16进制字符串
+     * @Author LuoJiaLei
+     * @Date 2020/6/12
+     * @Time 9:58
+     * @param s:
+     * @return java.lang.String
+     */
+    public static String strTo16(String s) {
+        StringBuilder str = new StringBuilder();
+        for (int i = 0; i < s.length(); i++) {
+            int ch = s.charAt(i);
+            String s4 = Integer.toHexString(ch);
+            str.append(s4);
+        }
+        return str.toString();
+    }
+
+    /**
+     * @Description 16进制转换成为string类型字符串
+     * @Author LuoJiaLei
+     * @Date 2020/6/12
+     * @Time 9:57
+     * @param s: 字符串
+     * @return java.lang.String
+     */
+    public static String hexStringToString(String s) {
+        if (StringUtils.isEmpty(s)) {
+            return null;
+        }
+        s = s.replace(" ", "");
+        byte[] baKeyword = new byte[s.length() / 2];
+        for (int i = 0; i < baKeyword.length; i++) {
+            try {
+                baKeyword[i] = (byte) (0xff & Integer.parseInt(s.substring(i * 2, i * 2 + 2), 16));
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        try {
+            s = new String(baKeyword, StandardCharsets.UTF_8);
+        } catch (Exception e1) {
+            e1.printStackTrace();
+        }
+        return s;
+    }
+
 }

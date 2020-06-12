@@ -40,7 +40,7 @@ public class NettyClient {
     //创建netty的启动类
     private Bootstrap bootstrap = new Bootstrap();
     //创建一个Rxtx通道
-    private RxtxChannel channel;
+    private volatile RxtxChannel channel;
 
 
     /**
@@ -107,14 +107,14 @@ public class NettyClient {
      * @Author LuoJiaLei
      * @Date 2020/6/11
      * @Time 17:32
-     * @param hexString: 字符串
+     * @param message: 字符串
      */
-    public void writeAndFlush(String hexString) {
-        String str = CRC16Util.crcDeal(hexString);
-        byte[] bytes = ByteUtil.hexStringToBytes(str);
+    public void writeAndFlush(String message) {
+        message = CRC16Util.strTo16(message);
+        byte[] bytes = ByteUtil.hexStringToBytes(message);
         ByteBuf buffer = channel.alloc().buffer();
-        ByteBuf byteBuf = buffer.writeBytes(bytes);
-        channel.writeAndFlush(byteBuf);
+        buffer.writeBytes(bytes);
+        channel.writeAndFlush(buffer);
     }
 
 }

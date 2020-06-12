@@ -1,7 +1,10 @@
 package com.hik.icv.patrol.netty;
 
+import com.hik.icv.patrol.utils.ByteUtil;
+import com.hik.icv.patrol.utils.CRC16Util;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
+import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandler;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
@@ -22,7 +25,6 @@ public class ClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
 
     private static final Logger logger = LoggerFactory.getLogger(ClientHandler.class);
 
-
     /**
      * @Description 发送给服务器消息的方法
      * @Author LuoJiaLei
@@ -34,7 +36,6 @@ public class ClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
     public void channelActive(ChannelHandlerContext ctx) throws Exception {
         ctx.writeAndFlush(Unpooled.copiedBuffer("hello,I am client", CharsetUtil.UTF_8));
     }
-
 
     /**
      * @Description 回调方法，接收服务器发送的消息
@@ -64,4 +65,12 @@ public class ClientHandler  extends SimpleChannelInboundHandler<ByteBuf> {
         logger.error(cause.toString());
         ctx.close();
     }
+
+    public void writeAndFlush(Channel channel, String hexString) {
+        byte[] bytes = ByteUtil.hexStringToBytes(hexString);
+        ByteBuf buffer = channel.alloc().buffer();
+        ByteBuf byteBuf = buffer.writeBytes(bytes);
+        channel.writeAndFlush(byteBuf);
+    }
+
 }

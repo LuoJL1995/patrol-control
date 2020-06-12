@@ -25,10 +25,6 @@ public class TestController {
     @Autowired
     private SerialService serialService;
 
-    @Autowired
-    private NettyClient nettyClient;
-
-
 
     @ApiOperation(value = "线程", notes = "线程", httpMethod = "GET")
     @ApiImplicitParams({
@@ -57,7 +53,7 @@ public class TestController {
     })
     @RequestMapping(value = "serialSendNetty")
     public String serialSendNetty(String message) {
-        nettyClient.writeAndFlush(message);
+        serialService.nettySerialSendData(message);
         return "success";
     }
 

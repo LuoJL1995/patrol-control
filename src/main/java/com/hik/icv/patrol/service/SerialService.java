@@ -14,8 +14,17 @@ public interface SerialService {
      * @Description 串口传输数据
      * @Author LuoJiaLei
      * @Date 2020/6/10
-     * @Time 15:30  
+     * @Time 15:30
      */
     void serialSendData();
+
+    /**
+     * @Description 串口通过netty传输数据
+     * @Author LuoJiaLei
+     * @Date 2020/6/12
+     * @Time 9:24
+     * @param message: 信息
+     */
+    void nettySerialSendData(String message);
 
 }
