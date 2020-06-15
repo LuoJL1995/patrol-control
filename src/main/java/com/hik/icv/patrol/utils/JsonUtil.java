@@ -232,7 +232,7 @@ public class JsonUtil {
     public static <K, V> Map<K, V> file2map(File file) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        Map<K, V> map = mapper.readValue(
+        Map<K, V> map = (Map<K, V>) mapper.readValue(
                 file,
                 new TypeReference<Map<String, Object>>() {
                 }
@@ -252,7 +252,7 @@ public class JsonUtil {
     public static <K, V> Map<K, V> json2map(String json) throws IOException {
 
         ObjectMapper mapper = new ObjectMapper();
-        Map<K, V> map = mapper.readValue(
+        Map<K, V> map = (Map<K, V>) mapper.readValue(
                 json,
                 new TypeReference<Map<String, Object>>() {
                 }
