@@ -3,8 +3,6 @@ package com.hik.icv.patrol.netty;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.handler.codec.MessageToByteEncoder;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @Description netty自定义解码器解决byte消息粘包情况
