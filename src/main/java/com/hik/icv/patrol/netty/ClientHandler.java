@@ -1,7 +1,6 @@
 package com.hik.icv.patrol.netty;
 
 import com.hik.icv.patrol.utils.ByteUtil;
-import com.hik.icv.patrol.utils.HexStringUtil;
 import io.netty.buffer.ByteBuf;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.Channel;
@@ -12,8 +11,6 @@ import io.netty.util.CharsetUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
-import java.nio.charset.StandardCharsets;
 
 /**
  * @Description 客户端逻辑处理类
