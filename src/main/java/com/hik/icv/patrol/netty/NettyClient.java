@@ -44,7 +44,6 @@ public class NettyClient {
     //创建一个Rxtx通道
     private volatile RxtxChannel channel;
 
-
     /**
      * @Description 通过netty通信方式连接串口
      * @Author LuoJiaLei
